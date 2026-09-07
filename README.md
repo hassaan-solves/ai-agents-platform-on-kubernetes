@@ -55,19 +55,17 @@ I also documented this work in a LinkedIn article:
 ## Walk-through
 
 
-## Walk-through
-
 <p align="center">
 
 1. Kubernetes Environment<br />
-The platform runs on an Amazon EKS cluster, providing the Kubernetes
+TThe platform runs on an Amazon EKS cluster, providing the Kubernetes
 environment for the AI services and supporting infrastructure.<br />
 <img src="screenshots/01-eks-cluster.png" />
 
 <br /><br />
 
 
-w. Model Gateway with LiteLLM<br />
+2. Model Gateway with LiteLLM<br />
 LiteLLM sits between the agent and the model layer, providing a common
 interface for model access and routing.<br />
 <img src="screenshots/02-litellm.png" />
@@ -97,3 +95,16 @@ quality of the agent's responses.<br />
 The architecture brings the Kubernetes infrastructure, model gateway,
 agent, observability, and evaluation components together into one platform.<br />
 <img src="screenshots/06-architecture.png" />
+
+
+## Acknowledgment
+
+This work was completed as part of a hands-on AWS AI infrastructure workshop
+organized by BeSA.
+
+Special thanks to AWS for providing the hands-on environment and resources
+that made this learning experience possible.
+
+Thank you to Prasad Rao, Ashish Prajapati, Parna Mehta, Anmol Katakwar,
+BeSA, and all the volunteers who contributed to organizing and supporting
+the workshop.
