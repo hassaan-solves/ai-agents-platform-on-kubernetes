@@ -63,33 +63,22 @@ and supporting services are deployed.<br />
 
 <br /><br />
 
-2. Running the LLM with vLLM<br />
+2. Running the LLM with vLLM & Adding a Model Gateway with LiteLLM <br />
 Qwen2.5-3B is served through vLLM on AWS Inferentia using AWS Neuron,
-providing the inference layer for the agents.<br />
+providing the inference layer for the agents. LiteLLM provides a common interface for the agents and handles model
+routing between the available inference providers.<br />
 <img src="screenshots/02-vllm.png" />
 
 <br /><br />
 
-3. Adding a Model Gateway with LiteLLM<br />
-LiteLLM provides a common interface for the agents and handles model
-routing between the available inference providers.<br />
-<img src="screenshots/03-litellm.png" />
-
-<br /><br />
-
-4. Connecting an Agent to the Model<br />
+3. Connecting an Agent to the Model & Adding LLM Observability<br />
 A Strands agent connects to the model through LiteLLM and can reason over
-user requests before deciding how to respond or use available tools.<br />
-<img src="screenshots/04-strands-agent.png" />
-
-<br /><br />
-
-5. Adding LLM Observability<br />
-Langfuse and OpenTelemetry capture the agent's LLM calls, tool invocations,
+user requests before deciding how to respond or use available tools. Langfuse and OpenTelemetry capture the agent's LLM calls, tool invocations,
 decisions, latency, and token usage.<br />
-<img src="screenshots/05-langfuse.png" />
+<img src="screenshots/03-langfuse.png" />
 
 <br /><br />
+
 
 6. Adding RAG with Milvus<br />
 The agent retrieves relevant product and FAQ information from Milvus
