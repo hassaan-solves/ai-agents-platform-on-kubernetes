@@ -49,64 +49,87 @@ The platform brings together:
 
 I also documented this work in a LinkedIn article:
 
-👉 [Beyond LLMs: The Infrastructure Behind AI Agents](https://lnkd.in/p/digFSPXP)
+👉 [The Infrastructure Behind Production Ready AI Agents](https://lnkd.in/p/digFSPXP)
 
 
 ## Walk-through
 
 <p align="center">
 
-1. Kubernetes / EKS Environment<br />
+1. Setting Up the Kubernetes Environment<br />
+The platform starts with an Amazon EKS cluster where the AI infrastructure
+and supporting services are deployed.<br />
 <img src="screenshots/01-eks-cluster.png" />
 
 <br /><br />
 
-2. Self-Hosted Model Inference<br />
+2. Running the LLM with vLLM<br />
+Qwen2.5-3B is served through vLLM on AWS Inferentia using AWS Neuron,
+providing the inference layer for the agents.<br />
 <img src="screenshots/02-vllm.png" />
 
 <br /><br />
 
-3. LiteLLM Model Gateway<br />
+3. Adding a Model Gateway with LiteLLM<br />
+LiteLLM provides a common interface for the agents and handles model
+routing between the available inference providers.<br />
 <img src="screenshots/03-litellm.png" />
 
 <br /><br />
 
-4. Strands AI Agent<br />
+4. Connecting an Agent to the Model<br />
+A Strands agent connects to the model through LiteLLM and can reason over
+user requests before deciding how to respond or use available tools.<br />
 <img src="screenshots/04-strands-agent.png" />
 
 <br /><br />
 
-5. Langfuse Observability<br />
+5. Adding LLM Observability<br />
+Langfuse and OpenTelemetry capture the agent's LLM calls, tool invocations,
+decisions, latency, and token usage.<br />
 <img src="screenshots/05-langfuse.png" />
 
 <br /><br />
 
-6. RAG with Milvus<br />
+6. Adding RAG with Milvus<br />
+The agent retrieves relevant product and FAQ information from Milvus
+before generating a response.<br />
 <img src="screenshots/06-rag-milvus.png" />
 
 <br /><br />
 
-7. Conversation Memory<br />
+7. Adding Conversation Memory<br />
+Previous conversation turns are stored and retrieved from Milvus so the
+agent can use relevant context from earlier interactions.<br />
 <img src="screenshots/07-memory.png" />
 
 <br /><br />
 
-8. MCP Tool Integration<br />
+8. Connecting External Tools through MCP<br />
+An MCP server exposes tools such as order lookup, inventory checks, and
+return initiation. The agent discovers and invokes these tools dynamically.<br />
 <img src="screenshots/08-mcp.png" />
 
 <br /><br />
 
-9. Multi-Agent A2A<br />
+9. Connecting Multiple Agents with A2A<br />
+An orchestrator routes requests to specialized agents. The Order Agent
+handles order-related tasks while the Product Agent handles product
+knowledge and retrieval.<br />
 <img src="screenshots/09-multi-agent-a2a.png" />
 
 <br /><br />
 
-10. LLM-as-a-Judge Evaluation<br />
+10. Evaluating Agent Responses<br />
+A stronger model is used as an LLM-as-a-Judge to evaluate responses from
+the self-hosted model for accuracy, helpfulness, and safety.<br />
 <img src="screenshots/10-evaluation.png" />
 
 <br /><br />
 
-11. Knowledge Graph with Neo4j<br />
+11. Adding a Knowledge Graph with Neo4j<br />
+Customer, order, product, category, and policy relationships are represented
+as a graph to support structured relationship-based retrieval.<br />
 <img src="screenshots/11-neo4j.png" />
 
 </p>
