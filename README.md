@@ -54,71 +54,46 @@ I also documented this work in a LinkedIn article:
 
 ## Walk-through
 
+
+## Walk-through
+
 <p align="center">
 
-1. Setting Up the Kubernetes Environment<br />
-The platform starts with an Amazon EKS cluster where the AI infrastructure
-and supporting services are deployed.<br />
+1. Kubernetes Environment<br />
+The platform runs on an Amazon EKS cluster, providing the Kubernetes
+environment for the AI services and supporting infrastructure.<br />
 <img src="screenshots/01-eks-cluster.png" />
 
 <br /><br />
 
-2. Running the LLM with vLLM & Adding a Model Gateway with LiteLLM <br />
-Qwen2.5-3B is served through vLLM on AWS Inferentia using AWS Neuron,
-providing the inference layer for the agents. LiteLLM provides a common interface for the agents and handles model
-routing between the available inference providers.<br />
-<img src="screenshots/02-vllm.png" />
+
+w. Model Gateway with LiteLLM<br />
+LiteLLM sits between the agent and the model layer, providing a common
+interface for model access and routing.<br />
+<img src="screenshots/02-litellm.png" />
 
 <br /><br />
 
-3. Connecting an Agent to the Model & Adding LLM Observability<br />
-A Strands agent connects to the model through LiteLLM and can reason over
-user requests before deciding how to respond or use available tools. Langfuse and OpenTelemetry capture the agent's LLM calls, tool invocations,
-decisions, latency, and token usage.<br />
+3. LLM Observability with Langfuse<br />
+Langfuse provides visibility into the agent's execution, including
+LLM interactions, traces, latency, and usage information.<br />
 <img src="screenshots/03-langfuse.png" />
 
 <br /><br />
 
+4. AI Agent Chat Interface<br />
+The Chatlit UI provides the interface for interacting with the deployed
+AI agent and sending requests through the platform.<br />
+<img src="screenshots/04-chatlit-ui.png" />
 
-6. Adding RAG with Milvus<br />
-The agent retrieves relevant product and FAQ information from Milvus
-before generating a response.<br />
-<img src="screenshots/06-rag-milvus.png" />
+5. Agent Evaluation<br />
+The evaluation workflow uses an LLM-as-a-Judge approach to assess the
+quality of the agent's responses.<br />
+<img src="screenshots/05-evaluation.png" />
 
-<br /><br />
+<br />
 
-7. Adding Conversation Memory<br />
-Previous conversation turns are stored and retrieved from Milvus so the
-agent can use relevant context from earlier interactions.<br />
-<img src="screenshots/07-memory.png" />
-
-<br /><br />
-
-8. Connecting External Tools through MCP<br />
-An MCP server exposes tools such as order lookup, inventory checks, and
-return initiation. The agent discovers and invokes these tools dynamically.<br />
-<img src="screenshots/08-mcp.png" />
-
-<br /><br />
-
-9. Connecting Multiple Agents with A2A<br />
-An orchestrator routes requests to specialized agents. The Order Agent
-handles order-related tasks while the Product Agent handles product
-knowledge and retrieval.<br />
-<img src="screenshots/09-multi-agent-a2a.png" />
-
-<br /><br />
-
-10. Evaluating Agent Responses<br />
-A stronger model is used as an LLM-as-a-Judge to evaluate responses from
-the self-hosted model for accuracy, helpfulness, and safety.<br />
-<img src="screenshots/10-evaluation.png" />
-
-<br /><br />
-
-11. Adding a Knowledge Graph with Neo4j<br />
-Customer, order, product, category, and policy relationships are represented
-as a graph to support structured relationship-based retrieval.<br />
-<img src="screenshots/11-neo4j.png" />
-
-</p>
+6. Overall Architecture<br />
+The architecture brings the Kubernetes infrastructure, model gateway,
+agent, observability, and evaluation components together into one platform.<br />
+<img src="screenshots/06-architecture.png" />
