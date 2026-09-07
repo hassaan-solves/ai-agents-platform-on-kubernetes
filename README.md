@@ -58,7 +58,7 @@ I also documented this work in a LinkedIn article:
 <p align="center">
 
 1. Kubernetes Environment<br />
-TThe platform runs on an Amazon EKS cluster, providing the Kubernetes
+The platform runs on an Amazon EKS cluster, providing the Kubernetes
 environment for the AI services and supporting infrastructure.<br />
 <img src="screenshots/01-eks-cluster.png" />
 
@@ -80,7 +80,7 @@ LLM interactions, traces, latency, and usage information.<br />
 <br /><br />
 
 4. AI Agent Chat Interface<br />
-The Chatlit UI provides the interface for interacting with the deployed
+The Chainlit UI provides the interface for interacting with the deployed
 AI agent and sending requests through the platform.<br />
 <img src="screenshots/04-chatlit-ui.png" />
 
